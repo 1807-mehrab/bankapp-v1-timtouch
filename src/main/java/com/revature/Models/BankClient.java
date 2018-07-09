@@ -18,12 +18,15 @@ public class BankClient implements Serializable
     private transient int SSN;
     private transient String password;
 
-    public BankClient(String firstName, String lastName, String email, String password)
+    public BankClient(String firstName, String lastName, String email)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = hashPassword(password);
+    }
+
+    public void addBankAccount(BankAccount newAccount) {
+        bankAccounts.put(newAccount.getBankAccountNumber(), newAccount);
     }
 
     public BankAccount getBankAccount(int bankAccountNumber){

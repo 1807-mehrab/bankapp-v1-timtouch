@@ -16,11 +16,11 @@ public abstract class BankAccount
      * Withdraws money from the bank account's balance.
      * @param amount amount to be withdrawn.
      */
-    public abstract void withdraw(double amount);
+    public abstract void withdraw(double amount) throws InvalidAmountException;
 
-    public abstract void deposit(double amount);
+    public abstract void deposit(double amount) throws InvalidAmountException;
 
-    public abstract void transfer(double amount, int bankAccountNumber);
+    public abstract void transfer(double amount, int bankAccountNumber) throws InvalidAmountException;
 
     public void closeAccount()
     {

@@ -1,16 +1,23 @@
 package com.revature.Models;
 
+import com.revature.Exceptions.InvalidAmountException;
+
 public class SavingsAccount extends BankAccount
 {
     private float interestRate;
 
+    public SavingsAccount (int bankAccountNumber, double initialBalance){
+        setBankAccountNumber(bankAccountNumber);
+        setBalance(initialBalance);
+    }
+
     @Override
-    public void withdraw(double amount)
+    public void withdraw(double amount) throws InvalidAmountException
     {
         if ( amount < 0.0d ) {
-          System.out.println("Can't withdraw negative dollars!");
+          throw new InvalidAmountException("Can't withdraw negative dollars!");
         } else if ( amount > getBalance()){
-            System.out.println("Can't withdraw more than the balanace!");
+            throw new InvalidAmountException("Can't withdraw more than the balance!");
         } else {
             setBalance( getBalance() - amount);
             System.out.println("Withdrew: " + amount);
@@ -19,10 +26,10 @@ public class SavingsAccount extends BankAccount
     }
 
     @Override
-    public void deposit(double amount)
+    public void deposit(double amount) throws InvalidAmountException
     {
         if ( amount < 0.0d ) {
-            System.out.println("Can't deposit negative dollars!");
+            throw new InvalidAmountException("Can't deposit negative dollars!");
         } else {
             setBalance(getBalance() + amount);
             System.out.println("Deposited: " + amount);
@@ -30,10 +37,16 @@ public class SavingsAccount extends BankAccount
         }
     }
 
+    // TODO: Complete the transfer, I only withdrew from this account...
+
     @Override
     public void transfer(double amount, int bankAccountNumber)
     {
-        withdraw(amount);
+        try {
+            withdraw(amount);
+        } catch (InvalidAmountException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public float getInterestRate()
