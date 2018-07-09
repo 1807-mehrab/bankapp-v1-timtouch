@@ -2,6 +2,7 @@ package com.revature;
 
 import static org.junit.Assert.assertEquals;
 
+import com.revature.Models.SavingsAccount;
 import org.junit.Before;
 import org.junit.Test;
 

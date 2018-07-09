@@ -1,4 +1,4 @@
-package com.revature;
+package com.revature.Models;
 
 public class CheckingAccount extends BankAccount
 {

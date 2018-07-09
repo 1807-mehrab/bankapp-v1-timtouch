@@ -1,4 +1,6 @@
-package com.revature;
+package com.revature.Models;
+
+import com.revature.Exceptions.InvalidAmountException;
 
 /**
  * The abstract BankAccount class is used as a basis for things a bank account can do.

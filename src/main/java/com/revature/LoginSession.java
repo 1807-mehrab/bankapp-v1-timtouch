@@ -1,5 +1,7 @@
 package com.revature;
 
+import com.revature.Models.BankClient;
+
 /**
  * Maintains login state of user
  */
