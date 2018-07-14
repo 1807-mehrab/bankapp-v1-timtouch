@@ -1,6 +1,8 @@
 package com.revature;
 
-public interface Deoositable
+import com.revature.exceptions.InvalidAmountException;
+
+public interface Depositable
 {
-    public void deposit(double amount);
+    public void deposit(double amount) throws InvalidAmountException;
 }

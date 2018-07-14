@@ -1,9 +1,9 @@
 package com.revature;
 
-import com.revature.Exceptions.InvalidAmountException;
-import com.revature.Models.BankAccount;
-import com.revature.Models.BankClient;
-import com.revature.Models.SavingsAccount;
+import com.revature.exceptions.InvalidAmountException;
+import com.revature.models.BankAccount;
+import com.revature.models.BankClient;
+import com.revature.models.SavingsAccount;
 
 import java.util.*;
 

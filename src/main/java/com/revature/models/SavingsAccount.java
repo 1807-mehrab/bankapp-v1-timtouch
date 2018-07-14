@@ -1,6 +1,6 @@
-package com.revature.Models;
+package com.revature.models;
 
-import com.revature.Exceptions.InvalidAmountException;
+import com.revature.exceptions.InvalidAmountException;
 
 public class SavingsAccount extends BankAccount
 {
@@ -35,17 +35,6 @@ public class SavingsAccount extends BankAccount
         }
     }
 
-    // TODO: Complete the transfer, I only withdrew from this account...
-
-    @Override
-    public void transfer(double amount, int bankAccountNumber)
-    {
-        try {
-            withdraw(amount);
-        } catch (InvalidAmountException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
 
     public float getInterestRate()
     {

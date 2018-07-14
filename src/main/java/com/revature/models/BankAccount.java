@@ -1,7 +1,6 @@
-package com.revature.Models;
+package com.revature.models;
 
 import com.revature.Depositable;
-import com.revature.Exceptions.InvalidAmountException;
 import com.revature.Withdrawable;
 
 /**
@@ -12,20 +11,7 @@ public abstract class BankAccount implements Withdrawable, Depositable
     private String bankAccountName;
     private int bankAccountNumber;
     private double balance;
-    private boolean isClosed;
 
-
-    public abstract void transfer(double amount, int bankAccountNumber) throws InvalidAmountException;
-
-    public void closeAccount()
-    {
-        isClosed = true;
-    }
-
-    public void openAccount()
-    {
-        isClosed = false;
-    }
 
     public String getBankAccountName()
     {

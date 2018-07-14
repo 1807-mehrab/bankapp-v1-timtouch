@@ -1,4 +1,4 @@
-package com.revature.Models;
+package com.revature.models;
 
 import java.util.HashSet;
 import java.util.Set;

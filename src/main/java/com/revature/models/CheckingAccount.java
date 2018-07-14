@@ -1,6 +1,8 @@
-package com.revature.Models;
+package com.revature.models;
 
-public class CheckingAccount extends BankAccount
+import com.revature.Transferable;
+
+public class CheckingAccount extends BankAccount implements Transferable
 {
     public void withdraw(double amount)
     {
@@ -12,9 +14,9 @@ public class CheckingAccount extends BankAccount
 
     }
 
-    @Override
     public void transfer(double amount, int bankAccountNumber)
     {
 
     }
+
 }

@@ -1,4 +1,4 @@
-package com.revature.Exceptions;
+package com.revature.exceptions;
 
 public class InvalidAmountException extends Exception
 {

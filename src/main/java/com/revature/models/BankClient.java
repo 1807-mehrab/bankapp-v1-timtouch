@@ -1,4 +1,4 @@
-package com.revature.Models;
+package com.revature.models;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -11,6 +11,9 @@ public class BankClient implements Serializable
     private String firstName;
     private String lastName;
     private String email;
+
+
+    private String username;
 
     // Hashmap of client's bank accounts. K is the bank account number, V is the BankAccount object
     private HashMap<Integer, BankAccount> bankAccounts = new HashMap<Integer, BankAccount>();
@@ -25,11 +28,13 @@ public class BankClient implements Serializable
         this.email = email;
     }
 
-    public void addBankAccount(BankAccount newAccount) {
+    public void addBankAccount(BankAccount newAccount)
+    {
         bankAccounts.put(newAccount.getBankAccountNumber(), newAccount);
     }
 
-    public BankAccount getBankAccount(int bankAccountNumber){
+    public BankAccount getBankAccount(int bankAccountNumber)
+    {
         return bankAccounts.get(bankAccountNumber);
     }
 
@@ -76,6 +81,16 @@ public class BankClient implements Serializable
     public void setLastName(String lastName)
     {
         this.lastName = lastName;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
     }
 
     public int getSSN()
