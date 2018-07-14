@@ -1,24 +1,19 @@
 package com.revature.Models;
 
+import com.revature.Depositable;
 import com.revature.Exceptions.InvalidAmountException;
+import com.revature.Withdrawable;
 
 /**
  * The abstract BankAccount class is used as a basis for things a bank account can do.
  */
-public abstract class BankAccount
+public abstract class BankAccount implements Withdrawable, Depositable
 {
     private String bankAccountName;
     private int bankAccountNumber;
     private double balance;
     private boolean isClosed;
 
-    /**
-     * Withdraws money from the bank account's balance.
-     * @param amount amount to be withdrawn.
-     */
-    public abstract void withdraw(double amount) throws InvalidAmountException;
-
-    public abstract void deposit(double amount) throws InvalidAmountException;
 
     public abstract void transfer(double amount, int bankAccountNumber) throws InvalidAmountException;
 

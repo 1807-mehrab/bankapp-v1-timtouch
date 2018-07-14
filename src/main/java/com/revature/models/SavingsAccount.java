@@ -11,7 +11,6 @@ public class SavingsAccount extends BankAccount
         setBalance(initialBalance);
     }
 
-    @Override
     public void withdraw(double amount) throws InvalidAmountException
     {
         if ( amount < 0.0d ) {
@@ -25,7 +24,6 @@ public class SavingsAccount extends BankAccount
         }
     }
 
-    @Override
     public void deposit(double amount) throws InvalidAmountException
     {
         if ( amount < 0.0d ) {
