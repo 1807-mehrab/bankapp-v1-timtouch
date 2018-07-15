@@ -49,13 +49,6 @@ create table bankAccountTransaction(
     transactionType_id number not null
 );
 
-alter table bankAccountTransaction
-drop column transaction_datetime;
-
-alter table bankAccountTransaction
-add transaction_datetime timestamp
-default CURRENT_TIMESTAMP;
-
 -- Add foreign key constraints and composite primary keys
 alter table bankClient add constraint fk_bank_id
     foreign key (bank_id) references bank(bank_id);
