@@ -13,10 +13,10 @@ import java.util.List;
 
 public class BankDAO
 {
-    private String getAllBanksQuery = "SELECT * FROM BANK";
-    private String getBankByIdQuery = "SELECT * FROM BANK WHERE BANK_ID = ?";
-    private String createBankQuery = "INSERT INTO BANK(BANK_NAME) VALUES(?)";
-    private String removeBankQuery = "DELETE FROM BANK WHERE BANK_ID = ?";
+    private static final String getAllBanksQuery = "SELECT * FROM BANK";
+    private static final String getBankByIdQuery = "SELECT * FROM BANK WHERE BANK_ID = ?";
+    private static final String createBankQuery = "INSERT INTO BANK(BANK_NAME) VALUES(?)";
+    private static final String removeBankQuery = "DELETE FROM BANK WHERE BANK_ID = ?";
 
     /**
      * Get all banks
@@ -26,7 +26,7 @@ public class BankDAO
         PreparedStatement ps;
         Bank bank;
 
-        List<Bank> banks = new ArrayList<Bank>();
+        List<Bank> banks = new ArrayList<>();
 
         try (Connection conn = ConnectionUtil.getConnection()){
             ps = conn.prepareStatement(getAllBanksQuery);
@@ -89,15 +89,16 @@ public class BankDAO
     }
 
     /**
-     * Creates a new bank in database
+     * Adds a new bank to database
      * @param bank
      */
-    public void createBank(Bank bank) {
+    public void addBank(Bank bank) {
         PreparedStatement ps;
 
         try (Connection conn = ConnectionUtil.getConnection())
         {
             ps = conn.prepareStatement(createBankQuery);
+
             ps.setString(1,bank.getName());
 
             ps.executeUpdate();
@@ -114,15 +115,15 @@ public class BankDAO
 
     /**
      * Delete bank from database of given id
-     * @param bank
+     * @param bankId
      */
-    public void removeBank(Bank bank) {
+    public void removeBank(int bankId) {
         PreparedStatement ps;
 
         try (Connection conn = ConnectionUtil.getConnection())
         {
             ps = conn.prepareStatement(removeBankQuery);
-            ps.setInt(1,bank.getId());
+            ps.setInt(1,bankId);
 
             ps.executeUpdate();
 
@@ -135,4 +136,5 @@ public class BankDAO
             e.printStackTrace();
         }
     }
+
 }

@@ -6,9 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * The Bank class handles creating new clients and bank accounts?
- * <p>
- * Employs the Singleton Pattern to make sure only one instance of Bank is created at all times (May want to change if your app can interface with multiple banks)
+ * The Bank class contain info about a bank
  */
 public class Bank
 {
@@ -33,36 +31,6 @@ public class Bank
         this.name = name;
     }
 
-    /**
-     * Adds a new client to the bank
-     *
-     * @param newClient client to be added to the bank
-     */
-    public void addNewClient(BankClient newClient)
-    {
-        bankClients.add(newClient);
-    }
-
-
-    /**
-     * Finds a bank transactions by the transactions number
-     *
-     * @param bankAccountNumber is the bank transactions number
-     * @return the matching BankAccount object, <code>null</code> if none are found
-     */
-    public BankAccount findBankAccount(int bankAccountNumber)
-    {
-        BankAccount foundBankAccount;
-        for (BankClient client : bankClients)
-        {
-            foundBankAccount = client.getBankAccount(bankAccountNumber);
-            if (foundBankAccount != null)
-            {
-                return foundBankAccount;
-            }
-        }
-        return null;
-    }
 
     //////////////////////////////////////////////////
     // GETTERS AND SETTERS

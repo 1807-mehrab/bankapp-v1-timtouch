@@ -4,14 +4,13 @@ import com.revature.transactions.Depositable;
 import com.revature.transactions.Withdrawable;
 
 /**
- * The abstract BankAccount class is used as a basis for things a bank transactions can do.
+ * The abstract BankAccount class is used as a basis for all types of bank accounts.
  */
 public abstract class BankAccount implements Withdrawable, Depositable
 {
     private int id;
     private String bankAccountName;
     private int bankAccountNumber;
-    private double balance;
 
 
 
@@ -49,15 +48,11 @@ public abstract class BankAccount implements Withdrawable, Depositable
         this.bankAccountNumber = bankAccountNumber;
     }
 
-    public double getBalance()
-    {
-        return balance;
-    }
-
-    public void setBalance(double balance)
-    {
-        this.balance = balance;
-    }
+    // TODO: Create query to calculate balance
+//    public double getBalance()
+//    {
+//        return balance;
+//    }
 
     @Override
     public String toString()
@@ -66,7 +61,6 @@ public abstract class BankAccount implements Withdrawable, Depositable
                 "id=" + id +
                 ", bankAccountName='" + bankAccountName + '\'' +
                 ", bankAccountNumber=" + bankAccountNumber +
-                ", balance=" + balance +
                 '}';
     }
 }

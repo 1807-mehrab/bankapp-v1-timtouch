@@ -1,31 +1,24 @@
 package com.revature.beans;
 
-import com.revature.util.SHA512Hash;
-
-import java.io.Serializable;
-import java.util.HashMap;
-
 /**
  * The BankClient class contains all relevant information about a bank client
  */
-public class BankClient implements Serializable
+public class BankClient
 {
     private int id;
+    private int bankId;
     private String firstName;
     private String lastName;
     private String email;
-
-
+    private int SSN;
     private String username;
+    private String password;
 
-    // Hashmap of client's bank accounts. K is the bank transactions number, V is the BankAccount object
-    private HashMap<Integer, BankAccount> bankAccounts = new HashMap<Integer, BankAccount>();
 
-    private transient int SSN;
-    private transient String password;
 
-    public BankClient(String firstName, String lastName, String email, int SSN, String username, String password)
+    public BankClient(int bankId,String firstName, String lastName, String email, int SSN, String username, String password)
     {
+        this.bankId = bankId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -34,17 +27,17 @@ public class BankClient implements Serializable
         this.password = password;
     }
 
-    public void addBankAccount(BankAccount newAccount)
+    public BankClient(int id, int bankId,String firstName, String lastName, String email, int SSN, String username, String password)
     {
-        bankAccounts.put(newAccount.getBankAccountNumber(), newAccount);
+        this.id = id;
+        this.bankId = bankId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.SSN = SSN;
+        this.username = username;
+        this.password = password;
     }
-
-    public BankAccount getBankAccount(int bankAccountNumber)
-    {
-        return bankAccounts.get(bankAccountNumber);
-    }
-
-
 
 
     //////////////////////////////////////////////////
@@ -61,14 +54,14 @@ public class BankClient implements Serializable
         this.id = id;
     }
 
-    public String getEmail()
+    public int getBankId()
     {
-        return email;
+        return bankId;
     }
 
-    public void setEmail(String email)
+    public void setBankId(int bankId)
     {
-        this.email = email;
+        this.bankId = bankId;
     }
 
     public String getFirstName()
@@ -87,6 +80,26 @@ public class BankClient implements Serializable
 
     }
 
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
+    public int getSSN()
+    {
+        return SSN;
+    }
+
+    public void setSSN(int SSN)
+    {
+        this.SSN = SSN;
+    }
+
     public void setLastName(String lastName)
     {
         this.lastName = lastName;
@@ -102,14 +115,14 @@ public class BankClient implements Serializable
         this.username = username;
     }
 
-    public int getSSN()
+    public String getPassword()
     {
-        return SSN;
+        return password;
     }
 
-    public void setSSN(int SSN)
+    public void setPassword(String password)
     {
-        this.SSN = SSN;
+        this.password = password;
     }
 
     @Override
