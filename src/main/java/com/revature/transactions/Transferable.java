@@ -1,4 +1,4 @@
-package com.revature;
+package com.revature.account;
 
 import com.revature.exceptions.InvalidAmountException;
 
