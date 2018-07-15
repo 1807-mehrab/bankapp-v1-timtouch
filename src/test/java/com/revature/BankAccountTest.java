@@ -1,6 +1,6 @@
 package com.revature;
 
-import com.revature.models.SavingsAccount;
+import com.revature.beans.SavingsAccount;
 import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;

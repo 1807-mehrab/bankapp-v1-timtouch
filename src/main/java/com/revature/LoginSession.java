@@ -1,6 +1,6 @@
 package com.revature;
 
-import com.revature.models.BankClient;
+import com.revature.beans.BankClient;
 
 /**
  * Maintains login state of user

@@ -1,6 +1,6 @@
-package com.revature.models;
+package com.revature.beans;
 
-import com.revature.Transferable;
+import com.revature.transactions.Transferable;
 
 public class CheckingAccount extends BankAccount implements Transferable
 {
@@ -18,5 +18,6 @@ public class CheckingAccount extends BankAccount implements Transferable
     {
 
     }
+
 
 }

@@ -1,17 +1,33 @@
-package com.revature.models;
+package com.revature.beans;
 
-import com.revature.Depositable;
-import com.revature.Withdrawable;
+import com.revature.transactions.Depositable;
+import com.revature.transactions.Withdrawable;
 
 /**
- * The abstract BankAccount class is used as a basis for things a bank account can do.
+ * The abstract BankAccount class is used as a basis for things a bank transactions can do.
  */
 public abstract class BankAccount implements Withdrawable, Depositable
 {
+    private int id;
     private String bankAccountName;
     private int bankAccountNumber;
     private double balance;
 
+
+
+
+    //////////////////////////////////////////////////
+    // GETTERS AND SETTERS
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
 
     public String getBankAccountName()
     {
@@ -41,5 +57,16 @@ public abstract class BankAccount implements Withdrawable, Depositable
     public void setBalance(double balance)
     {
         this.balance = balance;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "BankAccount{" +
+                "id=" + id +
+                ", bankAccountName='" + bankAccountName + '\'' +
+                ", bankAccountNumber=" + bankAccountNumber +
+                ", balance=" + balance +
+                '}';
     }
 }

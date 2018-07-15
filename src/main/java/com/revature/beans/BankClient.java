@@ -1,4 +1,6 @@
-package com.revature.models;
+package com.revature.beans;
+
+import com.revature.util.SHA512Hash;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -8,6 +10,7 @@ import java.util.HashMap;
  */
 public class BankClient implements Serializable
 {
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
@@ -15,17 +18,20 @@ public class BankClient implements Serializable
 
     private String username;
 
-    // Hashmap of client's bank accounts. K is the bank account number, V is the BankAccount object
+    // Hashmap of client's bank accounts. K is the bank transactions number, V is the BankAccount object
     private HashMap<Integer, BankAccount> bankAccounts = new HashMap<Integer, BankAccount>();
 
     private transient int SSN;
     private transient String password;
 
-    public BankClient(String firstName, String lastName, String email)
+    public BankClient(String firstName, String lastName, String email, int SSN, String username, String password)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.SSN = SSN;
+        this.username = username;
+        this.password = password;
     }
 
     public void addBankAccount(BankAccount newAccount)
@@ -38,19 +44,22 @@ public class BankClient implements Serializable
         return bankAccounts.get(bankAccountNumber);
     }
 
-    // TODO: Create password hashing
 
-    /**
-     * Takes in a password, then hashes it and returns a hashed version.
-     *
-     * @param unhashedPassword password to be hashed.
-     * @return the hashed password.
-     */
-    private String hashPassword(String unhashedPassword)
+
+
+    //////////////////////////////////////////////////
+    // GETTERS AND SETTERS
+
+
+    public int getId()
     {
-        return unhashedPassword;
+        return id;
     }
 
+    public void setId(int id)
+    {
+        this.id = id;
+    }
 
     public String getEmail()
     {
@@ -101,5 +110,19 @@ public class BankClient implements Serializable
     public void setSSN(int SSN)
     {
         this.SSN = SSN;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "BankClient{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", SSN=" + SSN +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

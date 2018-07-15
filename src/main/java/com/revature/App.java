@@ -1,15 +1,17 @@
 package com.revature;
 
+import com.revature.beans.Bank;
+import com.revature.dao.BankDAO;
 import com.revature.exceptions.InvalidAmountException;
-import com.revature.models.BankAccount;
-import com.revature.models.BankClient;
-import com.revature.models.SavingsAccount;
+import com.revature.beans.BankAccount;
+import com.revature.beans.BankClient;
+import com.revature.beans.SavingsAccount;
 
 import java.util.*;
 
 /**
- * Banking app in which users can login in to their account and access their bank accounts.
- * If they don't have a bank account, they can create one.
+ * Banking app in which users can login in to their transactions and access their bank accounts.
+ * If they don't have a bank transactions, they can create one.
  * One
  *
  */
@@ -21,13 +23,13 @@ public class App
 
     boolean quit;
 
-    BankClient client = new BankClient("", "", "");
+    BankClient client = new BankClient("", "", "", 0,"","");
 
     public static void main( String[] args )
     {
         App app = new App();
-        app.initializeOptions();
-        app.start();
+//        app.initializeOptions();
+//        app.start();
     }
 
     public void initializeOptions(){
@@ -41,7 +43,7 @@ public class App
     public void start(){
 
         System.out.println( "Welcome to the International Bank of Koalas!" );
-        System.out.println("Let's set up your bank account.");
+        System.out.println("Let's set up your bank transactions.");
 
         System.out.println("What is your first name?");
         input = scanner.nextLine();
