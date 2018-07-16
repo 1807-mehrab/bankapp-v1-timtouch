@@ -11,6 +11,8 @@ public abstract class Transaction
     private LocalDateTime timeOfTransaction;
     private int sourceBankAccountId;
 
+    public Transaction() {}
+
     public Transaction(BigDecimal amount, int sourceBankAccountId)
     {
         this.amount = amount;

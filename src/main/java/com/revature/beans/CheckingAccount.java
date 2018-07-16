@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 
 public class CheckingAccount extends BankAccount
 {
-    private BigDecimal minimumBalance;
+    private BigDecimal minimumBalance = new BigDecimal(100.00);
+
+    public CheckingAccount() {}
 
     public CheckingAccount(String bankAccountName, int bankAccountNumber, BigDecimal minimumBalance)
     {
@@ -18,6 +20,17 @@ public class CheckingAccount extends BankAccount
         this.minimumBalance = minimumBalance;
     }
 
+    @Override
+    public boolean saveNewBankAccount(BankClient bankClient)
+    {
+        if(isValidAccount()){
+            bankAccountDAO.addCheckingAccount(bankClient, this);
+            System.out.println("Account successfully made.");
+            return true;
+        }
+        System.out.println("Account creation unsuccessful.");
+        return false;
+    }
 
     //////////////////////////////////////////////////
     // GETTERS AND SETTERS

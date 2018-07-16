@@ -7,6 +7,8 @@ public class TransferTransaction extends Transaction
 {
     private int targetBankAccountId;
 
+    public TransferTransaction() {}
+
     public TransferTransaction(BigDecimal amount, int sourceBankAccountId, int targetBankAccountId)
     {
         super(amount, sourceBankAccountId);

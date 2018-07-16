@@ -1,17 +1,16 @@
 package com.revature;
 
-import com.revature.beans.Transaction;
-import com.revature.dao.TransactionDAO;
+import com.revature.beans.BankAccount;
+import com.revature.beans.BankClient;
+import com.revature.dao.BankClientDAO;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 /**
  * Banking app in which users can login in to their transactions and access their bank accounts.
  * If they don't have a bank transactions, they can create one.
- * One
  *
  */
 public class App 
@@ -25,16 +24,15 @@ public class App
 
     public static void main( String[] args )
     {
-        TransactionDAO transactionDAO = new TransactionDAO();
+        BankClientDAO bankClientDAO = new BankClientDAO();
+
+        BankClient bankClient = bankClientDAO.getBankClientById(1);
 
 
-        List<Transaction> transactions = transactionDAO.getAllTransactionsFromBankAccount(3);
-
-        for (Transaction t:
-             transactions)
-        {
-            System.out.println(t);
+        for(BankAccount account: bankClient.getAllBankAccounts()){
+            System.out.println(account);
         }
+
 
     }
 

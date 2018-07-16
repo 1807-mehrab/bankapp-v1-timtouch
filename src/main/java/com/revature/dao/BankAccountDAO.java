@@ -164,7 +164,7 @@ public class BankAccountDAO
      * @param bankClient
      * @param bankAccount
      */
-    public void createCheckingAccount(BankClient bankClient, CheckingAccount bankAccount){
+    public void addCheckingAccount(BankClient bankClient, CheckingAccount bankAccount){
         PreparedStatement ps;
 
         try (Connection conn = ConnectionUtil.getConnection())
@@ -200,7 +200,7 @@ public class BankAccountDAO
      * @param bankClient
      * @param bankAccount
      */
-    public void createSavingsAccount(BankClient bankClient, SavingsAccount bankAccount){
+    public void addSavingsAccount(BankClient bankClient, SavingsAccount bankAccount){
         PreparedStatement ps;
 
         try (Connection conn = ConnectionUtil.getConnection())

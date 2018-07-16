@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 
 public class DepositTransaction extends Transaction
 {
+    public DepositTransaction() {}
+
     public DepositTransaction(BigDecimal amount, int sourceBankAccountId)
     {
         super(amount, sourceBankAccountId);

@@ -1,5 +1,10 @@
 package com.revature.beans;
 
+import com.revature.dao.BankAccountDAO;
+import com.revature.dao.BankClientDAO;
+
+import java.util.List;
+
 /**
  * The BankClient class contains all relevant information about a bank client
  */
@@ -14,7 +19,11 @@ public class BankClient
     private String username;
     private String password;
 
+    private BankClientDAO bankClientDAO = new BankClientDAO();
+    private BankAccountDAO bankAccountDAO = new BankAccountDAO();
 
+
+    public BankClient() {}
 
     public BankClient(int bankId,String firstName, String lastName, String email, int SSN, String username, String password)
     {
@@ -39,6 +48,66 @@ public class BankClient
         this.password = password;
     }
 
+    /**
+     * Gets all the client's bank accounts
+     * @return
+     */
+    public List<BankAccount> getAllBankAccounts(){
+        return bankAccountDAO.getBankClientBankAccounts(id);
+    }
+
+
+    /**
+     * Creates new valid client
+     * @return
+     */
+    public boolean saveNewClient(){
+        if(isValidNewUser()) {
+            bankClientDAO.addBankClient(this);
+            System.out.println("User successfully made.");
+            return true;
+        }
+        System.out.println("User creation unsuccessful.");
+        return false;
+    }
+
+    public boolean isValidNewUser(){
+
+        boolean isValid = true;
+        if(bankClientDAO.getBankClientByEmail(email) != null){
+            System.out.println("Someone with that email already exists.");
+            isValid = false;
+        }
+        if(bankClientDAO.getBankClientBySSN(SSN) != null){
+            System.out.println("Someone with that SSN already exists.");
+            isValid = false;
+        }
+        if(bankClientDAO.getBankClientByUsername(username) != null){
+            System.out.println("Someone with that username already exists.");
+            isValid = false;
+        }
+        if (firstName.isEmpty()){
+            System.out.println("First name cannot be empty");
+            isValid = false;
+        }
+        if(lastName.isEmpty()){
+            System.out.println("Last name cannot be empty");
+            isValid = false;
+        }
+        if(SSN < 100000000){
+            System.out.println("SSN must be a 9 digit number not starting with 0");
+            isValid = false;
+        }
+        if (username.isEmpty()){
+            System.out.println("Username cannot be empty");
+            isValid = false;
+        }
+        if (password.isEmpty()){
+            System.out.println("Password cannot be empty");
+            isValid = false;
+        }
+        return isValid;
+    }
 
     //////////////////////////////////////////////////
     // GETTERS AND SETTERS

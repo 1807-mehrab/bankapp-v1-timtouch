@@ -2,7 +2,9 @@ package com.revature.beans;
 
 public class SavingsAccount extends BankAccount
 {
-    private double interestRate;
+    private double interestRate = 0.01;
+
+    public SavingsAccount() {}
 
     public SavingsAccount(String bankAccountName, int bankAccountNumber, double interestRate)
     {
@@ -14,6 +16,19 @@ public class SavingsAccount extends BankAccount
     {
         super(id, bankAccountName, bankAccountNumber);
         this.interestRate = interestRate;
+    }
+
+    @Override
+    public boolean saveNewBankAccount(BankClient bankClient)
+    {
+        if(isValidAccount()){
+            bankAccountDAO.addSavingsAccount(bankClient, this);
+            System.out.println("Account successfully made.");
+            return true;
+        }
+        System.out.println("Account creation unsuccessful.");
+        return false;
+
     }
 
     //////////////////////////////////////////////////
