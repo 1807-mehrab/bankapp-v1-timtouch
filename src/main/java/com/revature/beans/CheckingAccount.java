@@ -1,16 +1,18 @@
 package com.revature.beans;
 
+import java.math.BigDecimal;
+
 public class CheckingAccount extends BankAccount
 {
-    private double minimumBalance;
+    private BigDecimal minimumBalance;
 
-    public CheckingAccount(String bankAccountName, int bankAccountNumber, double minimumBalance)
+    public CheckingAccount(String bankAccountName, int bankAccountNumber, BigDecimal minimumBalance)
     {
         super(bankAccountName, bankAccountNumber);
         this.minimumBalance = minimumBalance;
     }
 
-    public CheckingAccount(int id, String bankAccountName, int bankAccountNumber, double minimumBalance)
+    public CheckingAccount(int id, String bankAccountName, int bankAccountNumber, BigDecimal minimumBalance)
     {
         super(id, bankAccountName, bankAccountNumber);
         this.minimumBalance = minimumBalance;
@@ -20,12 +22,12 @@ public class CheckingAccount extends BankAccount
     //////////////////////////////////////////////////
     // GETTERS AND SETTERS
 
-    public double getMinimumBalance()
+    public BigDecimal getMinimumBalance()
     {
         return minimumBalance;
     }
 
-    public void setMinimumBalance(double minimumBalance)
+    public void setMinimumBalance(BigDecimal minimumBalance)
     {
         this.minimumBalance = minimumBalance;
     }

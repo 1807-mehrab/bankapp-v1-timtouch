@@ -190,6 +190,7 @@ select * from bankAccountType;
 
 select * from transactionType;
 
+select * from bankAccountTransaction;
 --
 select bankClient.first_name, bankClient.last_name, bankAccount.bankAccount_name, bankAccount.bankAccount_number from bankClient inner join bankClientBankAccount 
     on bankClient.bankClient_id = bankClientBankAccount.bankClient_id
@@ -201,5 +202,4 @@ select * from bankAccount inner join bankAccountTransaction
     on bankAccount.bankAccount_id = sourceBankAccount_id
     inner join transactionType
     on bankAccountTransaction.transactionType_id = transactionType.transactionType_id;
-
 

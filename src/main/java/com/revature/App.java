@@ -1,10 +1,7 @@
 package com.revature;
 
-import com.revature.beans.BankAccount;
-import com.revature.beans.BankClient;
-import com.revature.beans.CheckingAccount;
-import com.revature.dao.BankAccountDAO;
-import com.revature.dao.BankClientDAO;
+import com.revature.beans.Transaction;
+import com.revature.dao.TransactionDAO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,44 +25,17 @@ public class App
 
     public static void main( String[] args )
     {
-        BankClientDAO bankClientDAO = new BankClientDAO();
-        BankAccountDAO bankAccountDAO = new BankAccountDAO();
-        BankClient client = bankClientDAO.getBankClientById(1);
-        BankAccount newAccount = new CheckingAccount("Tim's new bank account", 987654324, 100);
+        TransactionDAO transactionDAO = new TransactionDAO();
 
-        bankAccountDAO.createBankAccount(client, newAccount);
 
-        List<BankAccount> bankAccounts = bankAccountDAO.getBankClientBankAccounts(1);
+        List<Transaction> transactions = transactionDAO.getAllTransactionsFromBankAccount(3);
 
-        for (BankAccount account : bankAccounts){
-            System.out.println(account);
+        for (Transaction t:
+             transactions)
+        {
+            System.out.println(t);
         }
 
-
-
-
-
-
-
-//        App app = new App();
-//        app.initializeOptions();
-//        app.start();
     }
-
-    public void initializeOptions(){
-        options.put(1,"Check Balance");
-        options.put(2, "Withdraw");
-        options.put(3, "Deposit");
-        options.put(4,"Quit");
-    }
-
-
-    public void start(){
-
-
-    }
-
-
-
 
 }

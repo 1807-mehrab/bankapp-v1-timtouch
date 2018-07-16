@@ -1,28 +1,39 @@
 package com.revature.beans;
 
-import com.revature.transactions.Transferable;
-
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class TransferTransaction extends Transaction implements Transferable
+public class TransferTransaction extends Transaction
 {
-    private int targetBankAccountNumber;
+    private int targetBankAccountId;
 
-    public TransferTransaction(int amount, int sourceBankAccountId, int targetBankAccountNumber)
+    public TransferTransaction(BigDecimal amount, int sourceBankAccountId, int targetBankAccountId)
     {
         super(amount, sourceBankAccountId);
-        this.targetBankAccountNumber = targetBankAccountNumber;
+        this.targetBankAccountId = targetBankAccountId;
     }
 
-    public TransferTransaction(int id, int amount, LocalDateTime timeOfTransaction, int sourceBankAccountId, int targetBankAccountNumber)
+    public TransferTransaction(int id, BigDecimal amount, LocalDateTime timeOfTransaction, int sourceBankAccountId, int targetBankAccountId)
     {
         super(id, amount, timeOfTransaction, sourceBankAccountId);
-        this.targetBankAccountNumber = targetBankAccountNumber;
+        this.targetBankAccountId = targetBankAccountId;
+    }
+
+    public int getTargetBankAccountId()
+    {
+        return targetBankAccountId;
+    }
+
+    public void setTargetBankAccountId(int targetBankAccountId)
+    {
+        this.targetBankAccountId = targetBankAccountId;
     }
 
     @Override
-    public void transfer(double amount, int sourceBankAccountNumber, int targetBankAccountNumber)
+    public String toString()
     {
-
+        return "TransferTransaction{" +
+                "targetBankAccountId=" + targetBankAccountId +
+                "} " + super.toString();
     }
 }

@@ -7,6 +7,7 @@ import com.revature.beans.SavingsAccount;
 import com.revature.util.ConnectionUtil;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,8 +29,8 @@ public class BankAccountDAO
     private static final String getBankAccountByAccountNumberQuery =
             "SELECT * FROM BANKACCOUNT INNER JOIN BANKACCOUNTTYPE " +
             "ON BANKACCOUNT.BANKACCOUNTTYPE_ID = BANKACCOUNTTYPE.BANKACCOUNTTYPE_ID WHERE BANKACCOUNT_NUMBER = ?";
-    private static final String createSavingsAccountQuery = "INSERT INTO BANKACCOUNT(BANKACCOUNT_NAME, BANKACCOUNT_NUMBER, INTEREST_RATE, BANKACCOUNTTYPE_ID) VALUES(?,?,?,?)";
-    private static final String createCheckingAccountQuery = "INSERT INTO BANKACCOUNT(BANKACCOUNT_NAME, BANKACCOUNT_NUMBER, MINIMUM_BALANCE, BANKACCOUNTTYPE_ID) VALUES(?,?,?,?)";
+    private static final String createSavingsAccountQuery = "INSERT INTO BANKACCOUNT(BANKACCOUNT_NAME, BANKACCOUNT_NUMBER, INTEREST_RATE, BANKACCOUNTTYPE_ID) VALUES(?,?,?,2)";
+    private static final String createCheckingAccountQuery = "INSERT INTO BANKACCOUNT(BANKACCOUNT_NAME, BANKACCOUNT_NUMBER, MINIMUM_BALANCE, BANKACCOUNTTYPE_ID) VALUES(?,?,?,1)";
     private static final String createBankClientBankAccountQuery = "INSERT INTO BANKCLIENTBANKACCOUNT (BANKCLIENT_ID, BANKACCOUNT_ID) VALUES (?,?)";
     private static final String updateBankAccountNameQuery = "UPDATE FROM BANKACCOUNT SET BANKACCOUNT_NAME = ? WHERE BANKACCOUNT_ID = ?";
 
@@ -140,7 +141,7 @@ public class BankAccountDAO
             switch (rs.getString("bankaccounttypename"))
             {
                 case "CHECKING":
-                    double minimumBalance = rs.getDouble("minimum_balance");
+                    BigDecimal minimumBalance = rs.getBigDecimal("minimum_balance");
                     bankAccount = new CheckingAccount(id, accountName, accountNumber, minimumBalance);
                     break;
                 case "SAVINGS":
@@ -159,56 +160,31 @@ public class BankAccountDAO
     }
 
     /**
-     * Creates a bank account in the database
+     * Creates a checking account in the database and adds a relationship to it's owner
      * @param bankClient
      * @param bankAccount
      */
-    public void createBankAccount(BankClient bankClient, BankAccount bankAccount){
+    public void createCheckingAccount(BankClient bankClient, CheckingAccount bankAccount){
         PreparedStatement ps;
 
         try (Connection conn = ConnectionUtil.getConnection())
         {
-            // Use different insert statements depending on the type of bank account being saved
-            if (bankAccount instanceof CheckingAccount){
-                ps = conn.prepareStatement(createCheckingAccountQuery);
-                ps.setString(1, bankAccount.getBankAccountName());
-                ps.setInt(2, bankAccount.getBankAccountNumber());
-                ps.setDouble(3, ((CheckingAccount) bankAccount).getMinimumBalance());
-                ps.setInt(4,1); // TODO: Remove hardcoding of mapping checking account to it's type id
+            ps = conn.prepareStatement(createCheckingAccountQuery);
+            ps.setString(1, bankAccount.getBankAccountName());
+            ps.setInt(2, bankAccount.getBankAccountNumber());
+            ps.setBigDecimal(3, bankAccount.getMinimumBalance());
 
-                ps.executeUpdate();
+            ps.executeUpdate();
 
-                // Also add the relationship to represent the bank client owning the new bank account
-                ps = conn.prepareStatement(createBankClientBankAccountQuery);
+            // Also add the relationship to represent the bank client owning the new bank account
+            ps = conn.prepareStatement(createBankClientBankAccountQuery);
 
-                ps.setInt(1, bankClient.getId());
-                ps.setInt(2, getBankAccountByAccountNumber(bankAccount.getBankAccountNumber()).getId());
+            ps.setInt(1, bankClient.getId());
+            ps.setInt(2, getBankAccountByAccountNumber(bankAccount.getBankAccountNumber()).getId());
 
-                ps.executeUpdate();
+            ps.executeUpdate();
 
-                ps.close();
-
-            } else if(bankAccount instanceof SavingsAccount){
-                ps = conn.prepareStatement(createSavingsAccountQuery);
-                ps.setString(1, bankAccount.getBankAccountName());
-                ps.setInt(2, bankAccount.getBankAccountNumber());
-                ps.setDouble(3, ((SavingsAccount) bankAccount).getInterestRate());
-                ps.setInt(4, 2);  // TODO: Remove hardcoding of mapping savings account to it's type id
-
-                ps.executeUpdate();
-
-
-                // Also add the relationship to represent the bank client owning the new bank account
-                ps = conn.prepareStatement(createBankClientBankAccountQuery);
-
-                ps.setInt(1, bankClient.getId());
-                ps.setInt(2, getBankAccountByAccountNumber(bankAccount.getBankAccountNumber()).getId());
-
-                ps.executeUpdate();
-
-                ps.close();
-            }
-
+            ps.close();
 
         } catch (SQLException e)
         {
@@ -219,6 +195,43 @@ public class BankAccountDAO
         }
     }
 
+    /**
+     * Creates a savings account in the database and adds a relationship to it's owner
+     * @param bankClient
+     * @param bankAccount
+     */
+    public void createSavingsAccount(BankClient bankClient, SavingsAccount bankAccount){
+        PreparedStatement ps;
+
+        try (Connection conn = ConnectionUtil.getConnection())
+        {
+
+            ps = conn.prepareStatement(createSavingsAccountQuery);
+            ps.setString(1, bankAccount.getBankAccountName());
+            ps.setInt(2, bankAccount.getBankAccountNumber());
+            ps.setDouble(3, bankAccount.getInterestRate());
+
+            ps.executeUpdate();
+
+
+            // Also add the relationship to represent the bank client owning the new bank account
+            ps = conn.prepareStatement(createBankClientBankAccountQuery);
+
+            ps.setInt(1, bankClient.getId());
+            ps.setInt(2, getBankAccountByAccountNumber(bankAccount.getBankAccountNumber()).getId());
+
+            ps.executeUpdate();
+
+            ps.close();
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
     /**
      * Update an account given it's id
      * @param accountId

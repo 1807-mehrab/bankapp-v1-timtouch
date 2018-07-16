@@ -1,24 +1,23 @@
 package com.revature.beans;
 
-import com.revature.transactions.Withdrawable;
-
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class WithdrawTransaction extends Transaction implements Withdrawable
+public class WithdrawTransaction extends Transaction
 {
-    public WithdrawTransaction(int amount, int sourceBankAccountId)
+    public WithdrawTransaction(BigDecimal amount, int sourceBankAccountId)
     {
         super(amount, sourceBankAccountId);
     }
 
-    public WithdrawTransaction(int id, int amount, LocalDateTime timeOfTransaction, int sourceBankAccountId)
+    public WithdrawTransaction(int id, BigDecimal amount, LocalDateTime timeOfTransaction, int sourceBankAccountId)
     {
         super(id, amount, timeOfTransaction, sourceBankAccountId);
     }
 
     @Override
-    public void withdraw(double amount)
+    public String toString()
     {
-
+        return "WithdrawTransaction{} " + super.toString();
     }
 }

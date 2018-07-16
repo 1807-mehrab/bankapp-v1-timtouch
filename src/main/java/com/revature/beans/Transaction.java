@@ -1,24 +1,23 @@
 package com.revature.beans;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * This
- */
+
 public abstract class Transaction
 {
     private int id;
-    private int amount;
+    private BigDecimal amount;
     private LocalDateTime timeOfTransaction;
     private int sourceBankAccountId;
 
-    public Transaction(int amount, int sourceBankAccountId)
+    public Transaction(BigDecimal amount, int sourceBankAccountId)
     {
         this.amount = amount;
         this.sourceBankAccountId = sourceBankAccountId;
     }
 
-    public Transaction(int id, int amount, LocalDateTime timeOfTransaction, int sourceBankAccountId)
+    public Transaction(int id, BigDecimal amount, LocalDateTime timeOfTransaction, int sourceBankAccountId)
     {
         this.id = id;
         this.amount = amount;
@@ -36,12 +35,12 @@ public abstract class Transaction
         this.id = id;
     }
 
-    public int getAmount()
+    public BigDecimal getAmount()
     {
         return amount;
     }
 
-    public void setAmount(int amount)
+    public void setAmount(BigDecimal amount)
     {
         this.amount = amount;
     }
