@@ -1,23 +1,40 @@
 package com.revature.beans;
 
-import com.revature.transactions.Transferable;
-
-public class CheckingAccount extends BankAccount implements Transferable
+public class CheckingAccount extends BankAccount
 {
-    public void withdraw(double amount)
-    {
+    private double minimumBalance;
 
+    public CheckingAccount(String bankAccountName, int bankAccountNumber, double minimumBalance)
+    {
+        super(bankAccountName, bankAccountNumber);
+        this.minimumBalance = minimumBalance;
     }
 
-    public void deposit(double amount)
+    public CheckingAccount(int id, String bankAccountName, int bankAccountNumber, double minimumBalance)
     {
-
-    }
-
-    public void transfer(double amount, int bankAccountNumber)
-    {
-
+        super(id, bankAccountName, bankAccountNumber);
+        this.minimumBalance = minimumBalance;
     }
 
 
+    //////////////////////////////////////////////////
+    // GETTERS AND SETTERS
+
+    public double getMinimumBalance()
+    {
+        return minimumBalance;
+    }
+
+    public void setMinimumBalance(double minimumBalance)
+    {
+        this.minimumBalance = minimumBalance;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "CheckingAccount{" +
+                "minimumBalance=" + minimumBalance +
+                "} " + super.toString();
+    }
 }

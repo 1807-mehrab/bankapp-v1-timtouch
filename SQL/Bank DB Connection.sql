@@ -48,31 +48,38 @@ create table bankAccountTransaction(
     targetBankAccount_id number,
     transactionType_id number not null
 );
-
+    
 -- Add foreign key constraints and composite primary keys
 alter table bankClient add constraint fk_bank_id
-    foreign key (bank_id) references bank(bank_id);
+    foreign key (bank_id) references bank(bank_id)
+    on delete cascade;
     
 alter table bankAccount add constraint fk_bankAccountType_id
-    foreign key (bankAccountType_id) references bankAccountType(bankAccountType_id);
+    foreign key (bankAccountType_id) references bankAccountType(bankAccountType_id)
+    on delete cascade;
 
 alter table bankClientBankAccount add constraint fk_bankClient_id
-    foreign key (bankClient_id) references bankClient(bankClient_id);
+    foreign key (bankClient_id) references bankClient(bankClient_id)
+    on delete cascade;
 
 alter table bankClientBankAccount add constraint fk_bankAccount_id
-    foreign key (bankAccount_id) references bankAccount(bankAccount_id);
+    foreign key (bankAccount_id) references bankAccount(bankAccount_id)
+    on delete cascade;
     
 alter table bankClientBankAccount add constraint pk_bankClientBankAccount
     primary key(bankClient_id, bankAccount_id);
     
 alter table bankAccountTransaction add constraint fk_sourceBankAccount_id
-    foreign key (sourceBankAccount_id) references bankAccount(bankAccount_id);
+    foreign key (sourceBankAccount_id) references bankAccount(bankAccount_id)
+    on delete cascade;
 
 alter table bankAccountTransaction add constraint fk_targetBankAccount_id
-    foreign key (targetBankAccount_id) references bankAccount(bankAccount_id);    
+    foreign key (targetBankAccount_id) references bankAccount(bankAccount_id)
+    on delete cascade;    
 
 alter table bankAccountTransaction add constraint fk_transactionType_id
-    foreign key (transactionType_id) references transactionType(transactionType_id);    
+    foreign key (transactionType_id) references transactionType(transactionType_id)
+    on delete cascade;    
     
     
 -- Sequence

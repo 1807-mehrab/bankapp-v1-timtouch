@@ -1,23 +1,18 @@
 package com.revature;
 
-import com.revature.beans.SavingsAccount;
-import org.junit.Before;
-
-import static org.junit.Assert.assertEquals;
-
 /**
  * Unit test for simple App.
  */
 public class BankAccountTest
 {
-    SavingsAccount savingsAccount;
-
-    @Before
-    public void initializeBankAccount()
-    {
-        savingsAccount = new SavingsAccount(12345, 1000);
-    }
-
+//    SavingsAccount savingsAccount;
+//
+//    @Before
+//    public void initializeBankAccount()
+//    {
+//        savingsAccount = new SavingsAccount(12345, 1000);
+//    }
+//
 //    @Test
 //    public void successfullyWithdrawFromSavingsAccountTest()
 //    {

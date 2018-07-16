@@ -1,19 +1,32 @@
 package com.revature.beans;
 
-import com.revature.transactions.Depositable;
-import com.revature.transactions.Withdrawable;
-
 /**
  * The abstract BankAccount class is used as a basis for all types of bank accounts.
  */
-public abstract class BankAccount implements Withdrawable, Depositable
+public abstract class BankAccount
 {
     private int id;
     private String bankAccountName;
     private int bankAccountNumber;
 
+    public BankAccount(String bankAccountName, int bankAccountNumber)
+    {
+        this.bankAccountName = bankAccountName;
+        this.bankAccountNumber = bankAccountNumber;
+    }
 
+    public BankAccount(int id, String bankAccountName, int bankAccountNumber)
+    {
+        this.id = id;
+        this.bankAccountName = bankAccountName;
+        this.bankAccountNumber = bankAccountNumber;
+    }
 
+    // TODO: Create query to calculate balance
+//    public double getBalance()
+//    {
+//        return balance;
+//    }
 
     //////////////////////////////////////////////////
     // GETTERS AND SETTERS
@@ -48,11 +61,7 @@ public abstract class BankAccount implements Withdrawable, Depositable
         this.bankAccountNumber = bankAccountNumber;
     }
 
-    // TODO: Create query to calculate balance
-//    public double getBalance()
-//    {
-//        return balance;
-//    }
+
 
     @Override
     public String toString()

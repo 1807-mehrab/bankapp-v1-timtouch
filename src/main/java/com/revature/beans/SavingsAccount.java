@@ -1,42 +1,25 @@
 package com.revature.beans;
 
-import com.revature.exceptions.InvalidAmountException;
-
 public class SavingsAccount extends BankAccount
 {
-    private float interestRate;
+    private double interestRate;
 
-    public SavingsAccount (int bankAccountNumber, double initialBalance){
-        setBankAccountNumber(bankAccountNumber);
-        setBalance(initialBalance);
-    }
-
-    public void withdraw(double amount) throws InvalidAmountException
+    public SavingsAccount(String bankAccountName, int bankAccountNumber, double interestRate)
     {
-        if ( amount < 0.0d ) {
-          throw new InvalidAmountException("Can't withdraw negative dollars!");
-        } else if ( amount > getBalance()){
-            throw new InvalidAmountException("Can't withdraw more than the balance!");
-        } else {
-            setBalance( getBalance() - amount);
-            System.out.println("Withdrew: " + amount);
-            System.out.println("Balance is now: " + getBalance());
-        }
+        super(bankAccountName, bankAccountNumber);
+        this.interestRate = interestRate;
     }
 
-    public void deposit(double amount) throws InvalidAmountException
+    public SavingsAccount(int id, String bankAccountName, int bankAccountNumber, double interestRate)
     {
-        if ( amount < 0.0d ) {
-            throw new InvalidAmountException("Can't deposit negative dollars!");
-        } else {
-            setBalance(getBalance() + amount);
-            System.out.println("Deposited: " + amount);
-            System.out.println("Balance is now: " + getBalance());
-        }
+        super(id, bankAccountName, bankAccountNumber);
+        this.interestRate = interestRate;
     }
 
+    //////////////////////////////////////////////////
+    // GETTERS AND SETTERS
 
-    public float getInterestRate()
+    public double getInterestRate()
     {
         return interestRate;
     }
@@ -44,5 +27,13 @@ public class SavingsAccount extends BankAccount
     public void setInterestRate(float interestRate)
     {
         this.interestRate = interestRate;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "SavingsAccount{" +
+                "interestRate=" + interestRate +
+                "} " + super.toString();
     }
 }
