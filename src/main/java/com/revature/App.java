@@ -1,10 +1,7 @@
 package com.revature;
 
 import com.revature.beans.*;
-import com.revature.dao.BankAccountDAO;
-import com.revature.dao.BankClientDAO;
 import com.revature.dao.BankDAO;
-import com.revature.dao.TransactionDAO;
 import com.revature.exceptions.InvalidAmountException;
 import com.revature.util.AccountNumberGenerator;
 import com.revature.util.SHA512Hash;
@@ -22,9 +19,6 @@ public class App
 {
     private static LoginSession loginSession = new LoginSession();
     private static BankDAO bankDAO = new BankDAO();
-    private static BankClientDAO bankClientDAO = new BankClientDAO();
-    private static BankAccountDAO bankAccountDAO = new BankAccountDAO();
-    private static TransactionDAO transactionDAO = new TransactionDAO();
     private static Scanner scanner = new Scanner(System.in);
 
     private static Bank bank;
