@@ -33,7 +33,9 @@ public class LoginSession
 
         BankClient pendingClient = bankClientDAO.getBankClientByUsername(username);
 
-        if (pendingClient != null && password.equals(SHA512Hash.getSHA512SecurePassword(pendingClient.getPassword())))
+        password = SHA512Hash.getSHA512SecurePassword(password);
+
+        if (pendingClient != null && password.equals(pendingClient.getPassword()))
         {
             loggedInClient = pendingClient;
             return true;
