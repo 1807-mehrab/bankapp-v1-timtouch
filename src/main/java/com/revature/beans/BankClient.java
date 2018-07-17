@@ -2,6 +2,7 @@ package com.revature.beans;
 
 import com.revature.dao.BankAccountDAO;
 import com.revature.dao.BankClientDAO;
+import com.revature.util.SHA512Hash;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class BankClient
         this.email = email;
         this.SSN = SSN;
         this.username = username;
-        this.password = password;
+        setPassword(password);
     }
 
     public BankClient(int id, int bankId,String firstName, String lastName, String email, int SSN, String username, String password)
@@ -45,7 +46,7 @@ public class BankClient
         this.email = email;
         this.SSN = SSN;
         this.username = username;
-        this.password = password;
+        setPassword(password);
     }
 
     /**
@@ -191,7 +192,7 @@ public class BankClient
 
     public void setPassword(String password)
     {
-        this.password = password;
+        this.password = SHA512Hash.getSHA512SecurePassword(password);
     }
 
     @Override

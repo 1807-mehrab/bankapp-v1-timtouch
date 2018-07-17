@@ -15,7 +15,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Method to find all bank clients associated with a bank account
 public class BankAccountDAO
 {
     private static final String getAllBankAccountsOfBankClientQuery =

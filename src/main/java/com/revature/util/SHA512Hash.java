@@ -7,7 +7,6 @@ import java.security.NoSuchAlgorithmException;
  * Hashes the registered password with SHA-512
  * Source code taken from:
  * @author Lokesh Gupta  https://howtodoinjava.com/security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/
- * @author Timothy Touch <ttouch4@hotmail.com>
  */
 
 public class SHA512Hash

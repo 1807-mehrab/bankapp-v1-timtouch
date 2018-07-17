@@ -19,7 +19,9 @@ import java.util.List;
 public class TransactionDAO
 {
     private static final String getAllTransactionsFromBankAccountQuery =
-            "SELECT * FROM BANKACCOUNTTRANSACTION INNER JOIN TRANSACTIONTYPE ON BANKACCOUNTTRANSACTION.TRANSACTIONTYPE_ID = TRANSACTIONTYPE.TRANSACTIONTYPE_ID WHERE SOURCEBANKACCOUNT_ID = ? OR TARGETBANKACCOUNT_ID = ?";
+            "SELECT * FROM BANKACCOUNTTRANSACTION INNER JOIN TRANSACTIONTYPE " +
+                    "ON BANKACCOUNTTRANSACTION.TRANSACTIONTYPE_ID = TRANSACTIONTYPE.TRANSACTIONTYPE_ID " +
+                    "WHERE SOURCEBANKACCOUNT_ID = ? OR TARGETBANKACCOUNT_ID = ? ORDER BY TRANSACTION_DATETIME DESC";
     private static final String getMostRecentTransactionsQuery =
             "SELECT * FROM (SELECT * FROM BANKACCOUNTTRANSACTION INNER JOIN TRANSACTIONTYPE " +
                     "ON BANKACCOUNTTRANSACTION.TRANSACTIONTYPE_ID = TRANSACTIONTYPE.TRANSACTIONTYPE_ID WHERE SOURCEBANKACCOUNT_ID = ? OR TARGETBANKACCOUNT_ID = ?" +
@@ -72,7 +74,7 @@ public class TransactionDAO
             ps = conn.prepareStatement(getMostRecentTransactionsQuery);
             ps.setInt(1, accountId);
             ps.setInt(2, accountId);
-            ps.setInt(2, numOfTransaction);
+            ps.setInt(3, numOfTransaction);
 
             ResultSet rs = ps.executeQuery();
 
