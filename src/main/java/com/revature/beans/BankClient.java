@@ -59,6 +59,25 @@ public class BankClient
     // TODO: print them!!
     public void printAllBankAccounts(){
 
+        String printBankAccountFormat = "|%-42s|%-12s|%-15s|%-10s|";
+        String border = "------------------------------------------------------------------------------------";
+
+        System.out.println(firstName + "'s bank accounts" );
+
+        System.out.println(border);
+        System.out.println(String.format(printBankAccountFormat, "Name", "Account Type", "Account Number", "Balance"));
+        System.out.println(border);
+        for (BankAccount ba:
+             getAllBankAccounts())
+        {
+            if (ba instanceof CheckingAccount){
+                System.out.println(String.format(printBankAccountFormat, ba.getBankAccountName(), "CHECKING", ba.getBankAccountNumber(), ba.getBalance()));
+            } else if (ba instanceof SavingsAccount){
+                System.out.println(String.format(printBankAccountFormat, ba.getBankAccountName(), "SAVINGS", ba.getBankAccountNumber(), ba.getBalance()));
+
+            }
+        }
+        System.out.println(border);
     }
     /**
      * Creates new valid client

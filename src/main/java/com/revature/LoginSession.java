@@ -35,7 +35,9 @@ public class LoginSession
 
         password = SHA512Hash.getSHA512SecurePassword(password);
 
-        if (pendingClient != null && password.equals(pendingClient.getPassword()))
+//        System.out.println(password);
+//        System.out.println(pendingClient.getPassword());
+        if (pendingClient != null && password.equals(pendingClient.getPassword().toLowerCase()))
         {
             loggedInClient = pendingClient;
             return true;

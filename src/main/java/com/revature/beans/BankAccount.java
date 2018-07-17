@@ -6,6 +6,7 @@ import com.revature.exceptions.InvalidAmountException;
 import com.revature.transactions.Depositable;
 import com.revature.transactions.Transferable;
 import com.revature.transactions.Withdrawable;
+import com.revature.util.AccountNumberGenerator;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -58,7 +59,7 @@ public abstract class BankAccount implements Depositable, Withdrawable, Transfer
     }
 
     private void formatPrintTransactions(List<Transaction> transactions){
-        System.out.println("ACCOUNT: " + bankAccountName + " (" + bankAccountNumber +")");
+        System.out.println("All transactions in " + bankAccountName + " (" + bankAccountNumber +")");
         System.out.println(printBorderFormat);
         System.out.println(String.format(printTransactionFormat, "When", "Type","From", "To", "Amount"));
         System.out.println(printBorderFormat);
@@ -128,7 +129,7 @@ public abstract class BankAccount implements Depositable, Withdrawable, Transfer
         DepositTransaction deposit = new DepositTransaction(amount, id);
 
         transactionDAO.createDepositWithdrawTransaction(deposit);
-
+        System.out.println("Successfully deposited money");
     }
 
     /**
@@ -152,6 +153,7 @@ public abstract class BankAccount implements Depositable, Withdrawable, Transfer
         WithdrawTransaction withdrawal = new WithdrawTransaction(amount, id);
 
         transactionDAO.createDepositWithdrawTransaction(withdrawal);
+        System.out.println("Successfully withdrew money");
     }
 
     /**
@@ -185,6 +187,8 @@ public abstract class BankAccount implements Depositable, Withdrawable, Transfer
         TransferTransaction transfer = new TransferTransaction(amount, id, targetAccount.getId());
 
         transactionDAO.createTransferTransaction(transfer);
+
+        System.out.println("Successfully transferred money");
     }
 
     /**
@@ -197,18 +201,17 @@ public abstract class BankAccount implements Depositable, Withdrawable, Transfer
 
     public boolean isValidAccount()
     {
-        if (bankAccountDAO.getBankAccountByAccountNumber(getBankAccountNumber()) != null)
+        while (bankAccountDAO.getBankAccountByAccountNumber(getBankAccountNumber()) != null)
         {
             System.out.println("We assigned you a bank account number that already exists. Reassigning account number...");
-            // TODO: Reassign account numbers that are duplicates
-            return false;
+            bankAccountNumber = AccountNumberGenerator.generateValidAccountNumber();
         }
         if (getBankAccountName().isEmpty())
         {
             System.out.println("Account name cannot be empty.");
             return false;
         }
-        return false;
+        return true;
     }
 
     //////////////////////////////////////////////////
