@@ -21,7 +21,8 @@ public class App
     private static BankDAO bankDAO = new BankDAO();
     private static Scanner scanner = new Scanner(System.in);
 
-    private static Bank bank;
+    private static Bank bank = bankDAO.getBank(1);
+    ;
     private static String input;
 
     private static boolean quit = false;
@@ -29,9 +30,6 @@ public class App
 
     public static void main(String[] args)
     {
-
-        bank = bankDAO.getBank(1);
-
         start();
     }
 
@@ -112,6 +110,9 @@ public class App
         } while (!quit);
     }
 
+    /**
+     * Prompts user for information to create an account and creates one
+     */
     public static void createUserAccount()
     {
         BankClient newClient = new BankClient();
@@ -139,6 +140,9 @@ public class App
         newClient.saveNewClient();
     }
 
+    /**
+     * Logs user in to an account
+     */
     public static void login()
     {
         System.out.println("Login");
@@ -157,7 +161,9 @@ public class App
         }
     }
 
-    // TODO:
+    /**
+     * Prompts logged in user to give information to make an account
+     */
     public static void createBankAccount()
     {
         System.out.println("Let's create a new bank account!");
@@ -193,6 +199,9 @@ public class App
         newBankAccount.saveNewBankAccount(loginSession.getLoggedInClient());
     }
 
+    /**
+     * User chooses a bank account to display all their transactions
+     */
     public static void viewTransactions()
     {
         Map<Integer, BankAccount> bankAccountOptions = new HashMap<>();
@@ -230,7 +239,9 @@ public class App
 
     }
 
-    // TODO:
+    /**
+     * Prompts user to make a deposit
+     */
     public static void makeADeposit()
     {
         Map<Integer, BankAccount> bankAccountOptions = new HashMap<>();
@@ -275,7 +286,10 @@ public class App
         }
     }
 
-    // TODO:
+
+    /**
+     * Prompts user to make a withdrawal
+     */
     public static void makeAWithdrawal()
     {
         Map<Integer, BankAccount> bankAccountOptions = new HashMap<>();
@@ -319,7 +333,10 @@ public class App
         }
     }
 
-    // TODO:
+
+    /**
+     * Prompts user to make a transfer between accounts
+     */
     public static void makeATransfer()
     {
 

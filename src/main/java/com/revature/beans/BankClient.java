@@ -56,7 +56,9 @@ public class BankClient
         return bankAccountDAO.getBankClientBankAccounts(id);
     }
 
-    // TODO: print them!!
+    /**
+     * Prints all of client's bank accounts in a formatted fashion
+     */
     public void printAllBankAccounts(){
 
         String printBankAccountFormat = "|%-42s|%-12s|%-15s|%-10s|";
@@ -80,7 +82,7 @@ public class BankClient
         System.out.println(border);
     }
     /**
-     * Creates new valid client
+     * Creates and saves a new bank client
      * @return
      */
     public boolean saveNewClient(){
@@ -93,6 +95,10 @@ public class BankClient
         return false;
     }
 
+    /**
+     * Checks if this bank client's information is valid
+     * @return
+     */
     public boolean isValidNewUser(){
 
         boolean isValid = true;
