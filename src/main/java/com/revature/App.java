@@ -22,7 +22,6 @@ public class App
     private static Scanner scanner = new Scanner(System.in);
 
     private static Bank bank = bankDAO.getBank(1);
-    ;
     private static String input;
 
     private static boolean quit = false;
@@ -180,9 +179,11 @@ public class App
             {
                 case "1":
                     newBankAccount = new CheckingAccount();
+                    isValidInput = true;
                     break;
                 case "2":
                     newBankAccount = new SavingsAccount();
+                    isValidInput = true;
                     break;
                 default:
                     isValidInput = false;
